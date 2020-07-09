@@ -1,0 +1,252 @@
+[10:57, 02/07/2020] Vitor Felipe Eng.: 
+[10:57, 02/07/2020] Sérgio Venturi Pereira: //----------------------------------------------------CAMPO MINADO V 1.0----------------------------------------------------------------------.
+//ÚLTIMA ATUALIZAÇÃO 01/07/2020                                                                                                              |
+//BACHAREL - ENGENHARIA DA COMPUTAÇÃO 1° PERÍODO        ^   ^                                                                                |
+//UNIVERSIDADE DO VALE DO ITAJAÍ                          U                                                                                  |
+//LEONARDO RODRIGUES, SÉRGIO VENTURI E VITOR FELIPE                                                                                          |
+//--------------------------------------------------…
+[10:57, 02/07/2020] Vitor Felipe Eng.: CÓDIGO FINAL
+[11:05, 02/07/2020] Vitor Felipe Eng.: //----------------------------------------------------CAMPO MINADO V 1.0----------------------------------------------------------------------.
+//ÚLTIMA ATUALIZAÇÃO 02/07/2020                                                                                                              |
+//BACHAREL - ENGENHARIA DA COMPUTAÇÃO 1° PERÍODO        ^   ^                                                                                |
+//UNIVERSIDADE DO VALE DO ITAJAÍ                          U                                                                                  |
+//LEONARDO RODRIGUES, SÉRGIO VENTURI E VITOR FELIPE                                                                                          |
+//-------------------------------------------------------------------------------------------------------------------------------------------.
+#include <stdlib.h>
+#include <time.h>
+#include <iostream>
+#include <conio.h>
+#define L 9 //numero de linhas
+#define C 9 //numero de colunas
+#define B 15 //numero de bombas
+#include <windows.h>//contém declarações para todas as funções da API do Windows
+#include <locale.h>//Usado para utilizar a linguagem pt-br
+using namespace std;
+
+    int main(){
+    setlocale(LC_ALL,"Portuguese");
+
+    //Declaração de Variáveis
+	int linb, colb, linha, coluna, pontos = 0, i ,j, matriz[L][C] = {0}, matrizB[L][C] = {0}, pontuacao, escolha;
+	bool teste = true;
+
+    //CONSTRUÇÃO DO MENU PRIMEIRO QUADRO
+    char user[7];
+    cout << "\t\t\t .__  ._.  .. .. ._. ._.    .. ..  *  .. .  ._. ..  .__.";
+    cout << "\n\t\t\t |      |   |  | | | | |   | |   |    | | | |  |  | | |  |   | |  *  |   |";
+    cout << "\n\t\t\t |      |---|  | || | |---* |   |    | || |  |  | | |  |---| |   * |   |";
+    cout << "\n\t\t\t .__  |   |  |     | |     |_|    |     |  |  | ||  |   | |*  |__|    VERSÃO 1.5" << endl;
+    cout << "\n\n\n\n\n\n\n\t\t\t\t\t Insira um nome de usuário de apenas 7 caracteres\n\n\t\t\t\t\t\t";
+    cout << "\n\t\t\t\t\t Usuário:" << " ";
+    cin >> user;/* Coleta do nome de usuário que será exibido para o login, e também por que será exibido no fim do game para exibição da
+                pontosuação */
+
+
+    Sleep(1000);
+    system ("cls");
+
+    //CONSTRUÇÃO DO MENU SEGUNDO QUADRO
+    cout << "\n\n\n\n\n\n\n\t\t\t\t\t\t Projeto jogo, campo minado";
+    cout << "\n\n\n\t\t\t\t\t\t .------";
+    cout << "\n\t\t\t\t\t\t |            |     |";
+    cout << "\n\t\t\t\t\t\t |          --|-- --|--";
+    cout << "\n\t\t\t\t\t\t |            |     |";
+    cout << "\n\t\t\t\t\t\t *------";
+    Sleep (5000);
+    system ("cls");
+
+    //CONSTRUÇÃO DO MENU TERCEIRO QUADRO
+    cout << "\n\n\n\n\n\n\n\t\t\t\t\t\t     Engenharia";
+    cout << "\n\n\t\t\t\t\t\t         da";
+    cout << "\n\n\t\t\t\t\t\t     Computação";
+    cout << "\n\n\t\t\t\t\t          UNIVALI - ITAJAÍ";
+    Sleep (5000);
+    system ("cls");
+
+    //CONSTRUÇÃO DO MENU QUARTO QUADRO
+    cout << "\n\n\n\n\n\n\n\t\t\t\t\t\t    Acadêmicos";
+    cout << "\n\n\n\t\t\t\t\t      Leo Rodrigues";
+    cout << "\n\n\n\t\t\t\t\t      Sérgio Venturi Pereira";
+    cout << "\n\n\n\t\t\t\t\t      Vitor Felipe Ramos Mello";
+    Sleep (5000);
+    system ("cls");
+
+    //CONSTRUÇÃO DO MENU QUINTO QUADRO
+    cout << "\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t       APRESENTAM";
+    Sleep (5000);
+    system ("cls");
+
+    //CONSTRUÇÃO DO MENU SEXTO QUADRO
+    cout << "\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t    CAMPO MINADO" << endl;
+    cout << "\n\t\t\t\t\t\t         /";
+    cout << "\n\t\t\t\t\t\t        /";
+    cout << "\n\t\t\t\t\t\t .-----/-------.";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t ---------------" << endl;
+    Sleep (5000);
+    system ("cls");
+
+
+    //CONSTRUÇÃO DO MENU SÉTIMO QUADRO
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t   Fazendo login como: " << user << endl;
+    Sleep (3000);
+    system ("cls");
+
+    //CONSTRUÇÃO DA GUI DO MENU PRINCIPAL
+    cout << "\t\t\t .__  ._.  .. .. ._. ._.    .. ..  *  .. .  ._. ..  .__.";
+    cout << "\n\t\t\t |      |   |  | | | | |   | |   |    | | | |  |  | | |  |   | |  *  |   |";
+    cout << "\n\t\t\t |      |---|  | || | |---* |   |    | || |  |  | | |  |---| |   * |   |";
+    cout << "\n\t\t\t .__  |   |  |     | |     |_|    |     |  |  | ||  |   | |*  |__|    VERSÃO 1.5" << endl;
+
+    cout << "\n\n\t\t\t\t\t\t          / ";
+    cout << "\n\t\t\t\t\t\t        /";
+    cout << "\n\t\t\t\t\t\t .-----/-------.";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t ---------------" << endl;
+    cout << "\n\n\n\n\n\t\t\t\t\t\t    1-Iniciar" << endl;
+    cout << "\n\t\t\t\t\t\t      Sair";
+    cout << "\n\n\t\t\t\t\tPara sair clique no X no canto superior direito do console";
+    cout << "\n\n Logado como: " << user << endl;
+    cout << "\n\n\t\t\t\t\t Tecle 1 e comece o jogo!" << " ";
+    //MENU INICIAL DO GAME
+    cin >> escolha;
+
+    system("cls");
+
+    // INFORMAÇÕES SOBRE O GAME
+    cout << "\n\n\n\n\n\t\t\tCampo Minado é um popular jogo de computador para um jogador!";
+    cout << "\n\t\t\tSeu objetivo é revelar um campo de minas sem que alguma seja detonada!";
+    cout << "\n\t\t\tBoa sorte! " << user << ".";
+    cout << "\n\n\t\t\t\t\t\t          / ";
+    cout << "\n\t\t\t\t\t\t         / ";
+    cout << "\n\t\t\t\t\t\t .-----/-------.";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t |               |";
+    cout << "\n\t\t\t\t\t\t ---------------";
+    Sleep (7500);
+    system ("cls");
+
+    //DINÂMICA
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t    Carregando...";
+    Sleep (2900);
+    system ("cls");
+
+    //JOGO
+
+	srand((unsigned)time(NULL));// "Unsigned" quer dizer que só vai vir números sem sinal no rand
+
+    pontuacao = L*C-B;
+
+    //Inserção de bombas
+	for(i=0; i<B ;i++){
+		do{
+		    linb = rand()%L; //Bomba em linha aleatória
+	      colb = rand()%C; //Bomba em coluna aleatória
+
+		}while(matriz[linb][colb] == 9); //Nessa matriz se o valor for igual a 9 é uma bomba
+		matriz[linb][colb] = 9;
+	}
+
+
+	//Início do jogo
+	while(pontos != pontuacao){
+
+	//Impressão da matriz principal. A mesma será usada na animação de derrota
+    cout << "\t\t\t .__  ._.  .. .. ._. ._.    .. ..  *  .. .  ._. ..  .__.";
+    cout << "\n\t\t\t |      |   |  | | | | |   | |   |    | | | |  |  | | |  |   | |  *  |   |";
+    cout << "\n\t\t\t |      |---|  | || | |---* |   |    | || |  |  | | |  |---| |   * |   |";
+    cout << "\n\t\t\t .__  |   |  |     | |     |_|    |     |  |  | ||  |   | |*  |__|    VERSÃO 1.5" << endl;
+	cout << "\n\n\n\n\n\n\t\t\t\t\t\t\t|0|1|2|3|4|5|6|7|8|" << endl;
+		for(i=0; i<L; i++){
+			cout << "\t\t\t\t\t\t       " << i << "|" << "";
+        for(j=0; j<C; j++){
+        if (matrizB[i][j] == 1){
+        if(matriz[i][j] == 9){
+            cout << "x ";
+                }else
+                    cout << matriz[i][j] << "|";
+            }
+            else
+                cout << "_|";
+        }
+        cout << endl;
+    }
+
+	//Escolha de coordenadas
+	do{
+		cout <<"\n\n\t\t\t\t\t\t  Digite uma coordenada para linha:" << "";
+		cin >> linha;
+		cout << "\t\t\t\t\t\t  Digite uma coordenada coluna:" << "";
+		cin >> coluna;
+
+		if (matrizB [linha][coluna] == 1){ //Validação de dados
+			cout << "\t\t\t\t\t\t\t\t\tCoordenada já selecionada! Digite novamente:" << endl;
+		}else if(linha < 0 or linha > 8 or coluna < 0 or coluna > 8){
+			cout << "\t\t\t\t\t\t\t\t\tCoordenada inválida! Digite novamente:" << endl;
+		}else{
+			break;
+        }
+	}while(teste);
+        matrizB[linha][coluna] = 1; //Coordenada já utilizada = 1.
+
+
+    //Condicional para verificar se a coordenada é uma bomba, se não for,verificará quantas bombas há por perto.
+	if(matriz [linha][coluna] != 9){
+    for( i=-1;i<2;i++)
+    for( j=-1;j<2;j++)
+    if(linha+i < 9 and linha+i >=0 and coluna+j >= 0 and coluna+j<9)
+    if(matriz[linha+i][coluna+j] == 9)
+    matriz[linha][coluna] = matriz[linha][coluna]+1;
+    pontos++; //Adiciona um ponto ao usuário.
+
+    system("cls");//Limpa tela.
+    cout << endl << " Sua pontuação: "<< pontos << endl << endl;
+
+    //Condicional caso a bomba seja selecionada.
+	}else{
+		system("cls");
+    cout << "\t\t\t .__  ._.  .. .. ._. ._.    .. ..  *  .. .  ._. ..  .__.";
+    cout << "\n\t\t\t |      |   |  | | | | |   | |   |    | | | |  |  | | |  |   | |  *  |   |";
+    cout << "\n\t\t\t |      |---|  | || | |---* |   |    | || |  |  | | |  |---| |   * |   |";
+    cout << "\n\t\t\t .__  |   |  |     | |     |_|    |     |  |  | ||  |   | |*  |__|    VERSÃO 1.5" << endl;
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t BOMBA ENCONTRADA!";
+        cout << "\n\n\n\n\n\n\t\t\t\t\t\t\t|0|1|2|3|4|5|6|7|8|" << endl;
+		//Imprimi a matriz com as posições das bombas.
+		for(int i=0;i<L;i++){
+			cout << "\t\t\t\t\t\t       " << i << "|" << "";
+        for(int j=0;j<C;j++){
+        if(matriz[i][j] == 9)
+            cout << "X|";
+        else if (matrizB[i][j] == 1){
+					cout << matriz[i][j] << "|";
+        }else{
+            cout << "_|";
+    }
+            }
+            cout << endl;
+        }
+		break;
+	}
+}
+    //EXIBIÇÃO DA PONTUAÇÃO
+	if(pontos == pontuacao){
+  	  cout<< "\n\n\n\n\n\n\n\t\t\t\t\t\t\tVocê Venceu! Parabens!"<<endl;
+  	  cout << "\n\t\t\t\t\t\t\tSua pontuação: " << pontos;
+
+	}else{
+		cout << endl << "\t\t\t\t\t\t\t     GAME OVER" << endl<< endl << user << " sua pontuação é: " << pontos << endl << endl;
+		system("PAUSE");
+	}
+	return 0;
+}
